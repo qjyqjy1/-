@@ -1,0 +1,19 @@
+{
+  "name": "lottery-platform",
+  "version": "1.0.0",
+  "description": "竞彩 + 福彩投注方案分享平台",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "start:backend": "cd backend && npm start"
+  },
+  "keywords": [
+    "lottery",
+    "betting",
+    "platform"
+  ],
+  "author": "",
+  "license": "MIT"
+}
