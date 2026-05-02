@@ -19,13 +19,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter, useParams } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import api from '@/utils/api'
 import PlanCard from '@/components/PlanCard.vue'
 import AdBanner from '@/components/AdBanner.vue'
 
 const router = useRouter()
-const params = useParams()
+const route = useRoute()
 
 const user = ref(null)
 const plans = ref([])
@@ -33,8 +33,8 @@ const plans = ref([])
 onMounted(async () => {
   try {
     const [userRes, plansRes] = await Promise.all([
-      api.get(`/api/users/${params.id}`),
-      api.get(`/api/plans?authorId=${params.id}`)
+      api.get(`/api/users/${route.params.id}`),
+      api.get(`/api/plans?authorId=${route.params.id}`)
     ])
     
     user.value = userRes.data?.user

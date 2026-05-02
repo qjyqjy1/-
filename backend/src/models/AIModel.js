@@ -4,7 +4,7 @@ const sequelize = require('../config/db');
 // AIModel - 用于记录 AI 调用历史
 const AIModel = sequelize.define('AIModel', {
   id: {
-    type: DataTypes.UUID,
+    type: DataTypes.STRING(36),
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true
   },
@@ -29,7 +29,7 @@ const AIModel = sequelize.define('AIModel', {
     allowNull: true
   },
   userId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     allowNull: true,
     references: {
       model: 'users',
@@ -43,10 +43,11 @@ const AIModel = sequelize.define('AIModel', {
 }, {
   tableName: 'ai_calls',
   timestamps: true,
+  underscored: true,
   indexes: [
     { fields: ['provider'] },
-    { fields: ['userId'] },
-    { fields: ['createdAt'] }
+    { fields: ['user_id'] },
+    { fields: ['created_at'] }
   ]
 });
 

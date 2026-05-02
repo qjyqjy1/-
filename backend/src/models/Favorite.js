@@ -2,15 +2,15 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 const Favorite = sequelize.define('Favorite', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  userId: { type: DataTypes.INTEGER, allowNull: false },
-  planId: { type: DataTypes.INTEGER, allowNull: false },
-  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
+  id: { type: DataTypes.INTEGER.UNSIGNED, primaryKey: true, autoIncrement: true },
+  userId: { type: DataTypes.INTEGER.UNSIGNED, allowNull: false, field: 'user_id' },
+  planId: { type: DataTypes.INTEGER.UNSIGNED, allowNull: false, field: 'plan_id' },
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW, field: 'created_at' }
 }, {
   tableName: 'favorites',
   timestamps: false,
   indexes: [
-    { unique: true, fields: ['userId', 'planId'] }
+    { unique: true, fields: ['user_id', 'plan_id'] }
   ]
 });
 
