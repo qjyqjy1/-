@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 const response = require('../utils/response');
 
 exports.register = async (req, res) => {
+  console.log('=== REGISTER HIT ===', req.body);
   try {
     const { username, password, phone, email, nickname } = req.body;
 

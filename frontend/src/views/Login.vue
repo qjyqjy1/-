@@ -79,7 +79,7 @@ async function handleLogin() {
   error.value = ''
   
   try {
-    const res = await api.post('/api/auth/login', form.value)
+    const res = await api.post('/auth/login', form.value)
     authStore.setAuth(res.data.token, res.data.user)
     
     const redirect = route.query.redirect || '/'

@@ -33,7 +33,7 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const res = await api.get('/api/collections')
+    const res = await api.get('/collections')
     plans.value = res.data?.plans || []
   } catch (error) {
     console.error('加载收藏失败:', error)

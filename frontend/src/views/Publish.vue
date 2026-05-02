@@ -135,7 +135,7 @@ onMounted(async () => {
 
 async function loadLotteryTypes() {
   try {
-    const res = await api.get('/api/plans')
+    const res = await api.get('/plans')
     lotteryTypes.value = [
       { id: 1, name: '竞彩足球' },
       { id: 2, name: '竞彩篮球' },
@@ -156,7 +156,7 @@ async function loadLotteryTypes() {
 async function handleSubmit() {
   submitting.value = true
   try {
-    await api.post('/api/plans', form.value)
+    await api.post('/plans', form.value)
     alert('方案发布成功！请等待审核。')
     router.push('/profile')
   } catch (error) {

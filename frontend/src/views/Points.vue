@@ -118,7 +118,7 @@ watch(filter, () => {
 
 async function loadStats() {
   try {
-    const res = await api.get('/api/points')
+    const res = await api.get('/points')
     stats.value = res.data
   } catch (error) {
     console.error('加载统计失败:', error)
@@ -131,7 +131,7 @@ async function loadRecords() {
     const params = { page: page.value, limit: 20 }
     if (filter.value !== 'all') params.type = filter.value
     
-    const res = await api.get('/api/points/ledger', { params })
+    const res = await api.get('/points/ledger', { params })
     records.value = res.data?.records || []
     totalPages.value = res.data?.totalPages || 1
   } catch (error) {

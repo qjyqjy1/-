@@ -131,8 +131,8 @@ onMounted(async () => {
 async function loadData() {
   try {
     const [plansRes, collectionsRes, statsRes] = await Promise.all([
-      api.get('/api/plans?status=published'),
-      api.get('/api/collections'),
+      api.get('/plans?status=published'),
+      api.get('/collections'),
       api.get(`/api/users/${user.value.id}`)
     ])
     

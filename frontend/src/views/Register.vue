@@ -102,7 +102,7 @@ async function handleRegister() {
   error.value = ''
   
   try {
-    const res = await api.post('/api/auth/register', {
+    const res = await api.post('/auth/register', {
       username: form.value.username,
       phone: form.value.phone,
       password: form.value.password

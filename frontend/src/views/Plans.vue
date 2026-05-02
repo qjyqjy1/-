@@ -122,7 +122,7 @@ onMounted(async () => {
 
 async function loadLotteryTypes() {
   try {
-    const res = await api.get('/api/plans')
+    const res = await api.get('/plans')
     lotteryTypes.value = [
       { id: null, name: '全部' },
       ...(res.data?.plans?.[0]?.lotteryType ? [{ id: res.data.plans[0].lotteryType.id, name: '竞彩' }] : [])
@@ -143,7 +143,7 @@ async function loadPlans() {
     if (selectedType.value) params.lotteryTypeId = selectedType.value
     if (searchKeyword.value) params.search = searchKeyword.value
     
-    const res = await api.get('/api/plans', { params })
+    const res = await api.get('/plans', { params })
     plans.value = res.data?.plans || []
     totalPages.value = res.data?.totalPages || 1
   } catch (error) {

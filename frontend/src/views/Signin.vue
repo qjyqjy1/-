@@ -137,7 +137,7 @@ onMounted(async () => {
 
 async function loadStatus() {
   try {
-    const res = await api.get('/api/signin/status')
+    const res = await api.get('/signin/status')
     hasSignedIn.value = res.data?.hasSigninToday
     consecutiveDays.value = res.data?.consecutiveDays || 0
   } catch (error) {
@@ -147,7 +147,7 @@ async function loadStatus() {
 
 async function loadRecords() {
   try {
-    const res = await api.get('/api/signin/records?limit=10')
+    const res = await api.get('/signin/records?limit=10')
     records.value = res.data?.records || []
   } catch (error) {
     console.error('加载记录失败:', error)
@@ -157,7 +157,7 @@ async function loadRecords() {
 async function doSignin() {
   signing.value = true
   try {
-    const res = await api.post('/api/signin')
+    const res = await api.post('/signin')
     alert(`签到成功！获得${res.data.pointsEarned}积分`)
     hasSignedIn.value = true
     consecutiveDays.value = res.data.consecutiveDays
