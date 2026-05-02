@@ -33,17 +33,19 @@ const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT ||3001;
 
-const allowedOrigins = process.env.ALLOWED_HOSTS?.split(',') || ['http://localhost:5173', 'http://localhost:3000'];
+const allowedOrigins = process.env.ALLOWED_HOSTS === '*'
+  ? null
+  : (process.env.ALLOWED_HOSTS?.split(',') || ['http://localhost:5173', 'http://localhost:3000']);
 
 app.use(cors({
- origin: (origin, callback) => {
- if (!origin || allowedOrigins.includes(origin)) {
- callback(null, true);
- } else {
- callback(new Error('不允许的 CORS 源'));
- }
- },
- credentials: true
+  origin: (origin, callback) => {
+    if (!origin || !allowedOrigins || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('不允许的 CORS 源'));
+    }
+  },
+  credentials: true
 }));
 
 app.use(helmet({
