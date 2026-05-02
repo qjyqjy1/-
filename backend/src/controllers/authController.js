@@ -1,5 +1,6 @@
 const jwt = require('../config/jwt');
-const { User } = require('../models');
+const { User, sequelize } = require('../models');
+const { Op } = require('sequelize');
 const response = require('../utils/response');
 
 exports.register = async (req, res) => {
@@ -8,7 +9,7 @@ exports.register = async (req, res) => {
 
     const existingUser = await User.findOne({
       where: {
-        [User.sequelize.Op.or]: [
+        [Op.or]: [
           { username },
           { phone: phone || '' },
           { email: email || '' }
@@ -63,7 +64,7 @@ exports.login = async (req, res) => {
 
     const user = await User.findOne({
       where: {
-        [User.sequelize.Op.or]: [
+        [Op.or]: [
           { username: account },
           { phone: account },
           { email: account }

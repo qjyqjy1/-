@@ -59,7 +59,7 @@ class Scheduler {
     const oneDayAgo = new Date();
     oneDayAgo.setDate(oneDayAgo.getDate() - 1);
     const AdClick = require('../models/AdClick');
-    await AdClick.destroy({ where: { createdAt: { [Op.lt]: oneDayAgo } } });
+    await AdClick.destroy({ where: { viewedAt: { [Op.lt]: oneDayAgo } } });
   }
 
   async autoPublishPlans() {
